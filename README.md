@@ -39,11 +39,9 @@
 
 <img align="left" alt="HarshitPratapSingh's Github Stats" src="https://github-readme-stats.vercel.app/api?username=HarshitPratapSingh&show_icons=true&hide_border=true" />
 
----
 
 <br />
 
-###### Icons used are downloaded from ["Icons8"][icon-link]
 
 [bank-churn]: https://bank-churn.herokuapp.com/
 [twitter]: https://twitter.com/HarshitpratapU
