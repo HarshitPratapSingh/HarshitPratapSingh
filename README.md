@@ -1,4 +1,4 @@
-### Hi there, I'm Harshit - aka [HarshitPratapSingh][website] 👋
+### Hi there, I'm Harshit - aka "HarshitPratapSingh" 👋
 
 ## I'm a Student, , Developer, and Teacher!
 - 🔭 I’m currently practising Machine Learning/ Deep Learning!
