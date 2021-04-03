@@ -1,6 +1,8 @@
 ### Hi there, I'm Harshit - aka "HarshitPratapSingh" 👋
 
 ## I'm a Student, , Developer, and Teacher!
+
+[<img align="left" alt="Harshit Pratap Singh | Codewars" width="22px" src="https://www.codewars.com/users/HarshitPratapSingh/badges/small" />][Codewars]
 - 🔭 I’m currently practising Machine Learning/ Deep Learning!
 - 🌱 I’m currently learning everything 🤣
 - 👯 I’m looking to collaborate with other content creators
