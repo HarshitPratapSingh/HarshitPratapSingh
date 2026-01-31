@@ -1,54 +1,110 @@
-### Hi there, I'm Harshit - aka "HarshitPratapSingh" 👋
+### Hi there, I'm Harshit Singh (aka HarshitPratapSingh) 👋  
 
-## I'm a Student, , Developer, and Teacher!
+🚀 **Lead DevOps Engineer | Golang Developer | Cloud & Kubernetes Specialist**
 
-[<img align="left" alt="Harshit Pratap Singh | Codewars" width="22px" src="https://www.codewars.com/users/HarshitPratapSingh/badges/small" />][Codewars]
-- 🔭 I’m currently practising Machine Learning/ Deep Learning!
-- 🌱 I’m currently learning everything 🤣
-- 👯 I’m looking to collaborate with other content creators
-- 🥅 2020 Goals: Contribute more to Open Source ML/DL projects
-- ⚡ Fun fact: I love cycling and reading fantasies
-
-### Extra Links for more Exploration:
-
-[<img align="left" alt="HarshitPratapSingh | Twitter" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/twitter.svg" />][twitter]
-[<img align="left" alt="codeSTACKr | LinkedIn" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" />][linkedin]
-[<img align="left" alt="codeSTACKr | Instagram" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/instagram.svg" />][instagram]
-[<img align="left" alt="Bank Churn | Heroku" width="22px" src="https://github.com/HarshitPratapSingh/HarshitPratapSingh/blob/master/icons/Bank-churn.ico?raw=true" />][bank-churn]
-[<img align="left" alt="Cricket Pred | Heroku" width="22px" src="https://github.com/HarshitPratapSingh/HarshitPratapSingh/blob/master/icons/Cricket.ico?raw=true" />][cricket-pred]
-[<img align="left" alt="Traffic | Heroku" width="22px" src="https://github.com/HarshitPratapSingh/HarshitPratapSingh/blob/master/icons/Traffic.ico?raw=true" />][traffic-rec]
-
-<br />
+<p align="left">
+  <img src="https://komarev.com/ghpvc/?username=HarshitPratapSingh&label=Profile%20views&color=0e75b6&style=flat" alt="profile views" />
+  <img src="https://img.shields.io/github/followers/HarshitPratapSingh?label=Followers&style=social" alt="followers"/>
+</p>
 
 ---
 
-### Languages and Tools:
-
-<img align="left" alt="Visual Studio Code" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/visual-studio-code/visual-studio-code.png" />
-<img align="left" alt="Python" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/python/python.png" />
-<img align="left" alt="Anaconda" width="26px" src="https://github.com/HarshitPratapSingh/HarshitPratapSingh/blob/master/icons/anaconda.png?raw=true" />
-<img align="left" alt="Java" width="26px" src="https://github.com/HarshitPratapSingh/HarshitPratapSingh/blob/master/icons/java.png?raw=true" />
-<img align="left" alt="C++" width="26px" src="https://github.com/HarshitPratapSingh/HarshitPratapSingh/blob/master/icons/c++.png?raw=true" />
-<img align="left" alt="MySQL" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/mysql/mysql.png" />
-<img align="left" alt="Git" width="26px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/git/git.png" />
-<img align="left" alt="GitHub" width="26px" src="https://raw.githubusercontent.com/github/explore/78df643247d429f6cc873026c0622819ad797942/topics/github/github.png" />
-
-<br />
+## 🏆 GitHub Trophies
+<p align="left">
+  <img src="https://github-profile-trophy.vercel.app/?username=HarshitPratapSingh&theme=onedark&no-frame=true&row=1&column=6" />
+</p>
 
 ---
 
-<br />
+## 👨‍💻 About Me
 
-<img align="left" alt="HarshitPratapSingh's Github Stats" src="https://github-readme-stats.vercel.app/api?username=HarshitPratapSingh&show_icons=true&hide_border=true" />
+I’m a **Lead DevOps Engineer and Golang Developer with 3+ years of production experience**, specializing in **cloud infrastructure, Kubernetes platforms, CI/CD automation, and Golang-based tooling**.
 
+Currently working at **IMA360 Software India Pvt. Ltd.**, I design and lead **secure, scalable, and automated infrastructure** that powers production systems.
 
-<br />
+💡 I focus on **automation, reliability, security, and cost optimization**.
 
+---
 
-[bank-churn]: https://bank-churn.herokuapp.com/
-[twitter]: https://twitter.com/HarshitpratapU
-[instagram]: https://instagram.com/Harshitpratapsingh_
-[linkedin]: https://linkedin.com/in/HarshitPratapSingh
-[cricket-pred]: https://cricket-predictor.herokuapp.com/
-[traffic-rec]: https://ml1-rsdr.herokuapp.com/
-[icon-link]: https://icons8.com/
+## 💼 Experience Snapshot
+
+- **Lead DevOps Engineer – IMA360 Software India Pvt. Ltd.** *(Aug 2024 – Present)*  
+- **Software Consultant – Exikon Technology Pvt. Ltd.** *(Jun 2023 – Jul 2024)*  
+- **DevOps & Golang Developer Intern – Exalture** *(Oct 2021 – May 2023)*  
+
+---
+
+## 🛠 Tech Stack
+
+**Languages:** Golang  
+**Cloud:** AWS, Azure  
+**DevOps:** Docker, Kubernetes, Terraform, GitHub Actions, GitLab CI  
+**Monitoring:** Prometheus, Grafana  
+**Databases:** PostgreSQL  
+**Security:** IAM, RBAC, Secrets Management  
+
+---
+
+## 🚀 Featured Projects
+
+> Carefully selected projects demonstrating **real-world DevOps + Golang skills**
+
+### 🔹 DevOps Platform Automation Toolkit
+**Tech:** Golang, Kubernetes, Terraform, GitHub Actions  
+A production-ready toolkit to automate:
+- Kubernetes cluster bootstrap  
+- CI/CD pipeline creation  
+- Infrastructure validation  
+- Security hardening  
+
+👉 *Showcases Platform Engineering + Golang Automation*
+
+---
+
+### 🔹 Kubernetes Cost Optimizer
+**Tech:** Golang, Prometheus, Grafana  
+A cost optimization engine that:
+- Detects unused resources  
+- Suggests right-sizing  
+- Forecasts monthly infra costs  
+
+👉 *Showcases FinOps + Monitoring + Cloud Optimization*
+
+---
+
+### 🔹 Secure CI/CD Pipeline Framework
+**Tech:** GitHub Actions, Terraform, Docker  
+A reusable pipeline framework featuring:
+- Secure secret handling  
+- IAM based deployments  
+- Multi-env rollout strategies  
+
+👉 *Showcases DevSecOps maturity*
+
+---
+
+## 📈 GitHub Stats
+
+<p>
+  <img src="https://github-readme-stats.vercel.app/api?username=HarshitPratapSingh&show_icons=true&hide_border=true&count_private=true" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=HarshitPratapSingh&hide_border=true" />
+</p>
+
+---
+
+## 🌐 Connect With Me
+
+[LinkedIn](https://linkedin.com/in/HarshitPratapSingh) • 
+[Twitter](https://twitter.com/HarshitpratapU) • 
+[Instagram](https://instagram.com/Harshitpratapsingh_)
+
+---
+
+## ⚡ Fun Facts
+
+- 🌙 Night shift engineer (US timezone friendly)  
+- 🏗 Loves building scalable infra  
+- 📚 Reader of tech + strategy books  
+- 🏋 Fitness & discipline enthusiast  
+
+---
