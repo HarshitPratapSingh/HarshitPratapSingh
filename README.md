@@ -96,7 +96,7 @@ A reusable pipeline framework featuring:
 
 [LinkedIn](https://linkedin.com/in/HarshitPratapSingh) • 
 [Twitter](https://twitter.com/HarshitpratapU) • 
-[Instagram](https://instagram.com/Harshitpratapsingh_)
+[Instagram](https://instagram.com/exploring_warmachine)
 
 ---
 
