@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Harshit Singh — Lead DevOps Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #020409;
+      --surface: #0d1117;
+      --surface2: #161b22;
+      --border: #21262d;
+      --accent: #00d8ff;
+      --accent2: #7c3aed;
+      --accent3: #06ffa5;
+      --accent4: #ff6b35;
+      --text: #e6edf3;
+      --text2: #8b949e;
+      --text3: #3d444d;
+      --glow: rgba(0,216,255,0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', sans-serif;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* Custom cursor */
+    #cursor {
+      position: fixed;
+      width: 12px; height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s ease;
+      mix-blend-mode: screen;
+    }
+    #cursor-ring {
+      position: fixed;
+      width: 36px; height: 36px;
+      border: 1px solid rgba(0,216,255,0.4);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transition: all 0.15s ease;
+    }
+    body:hover #cursor { transform: scale(1); }
+
+    /* ─── CANVAS HERO ─── */
+    #hero {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #bg-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--accent3);
+      border: 1px solid rgba(6,255,165,0.25);
+      background: rgba(6,255,165,0.05);
+      padding: 0.35rem 1rem;
+      border-radius: 100px;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-badge::before { content: "●"; animation: pulse 1.5s infinite; }
+
+    .hero-name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      animation: fadeUp 0.8s 0.1s ease both;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 50%, var(--accent2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(0.85rem, 2vw, 1.1rem);
+      color: var(--text2);
+      margin-top: 1rem;
+      animation: fadeUp 0.8s 0.2s ease both;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-title span { color: var(--accent); }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2.5rem;
+      animation: fadeUp 0.8s 0.35s ease both;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--bg);
+      background: var(--accent);
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 6px;
+      cursor: none;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      box-shadow: 0 0 30px rgba(0,216,255,0.3);
+    }
+    .btn-primary:hover {
+      background: #fff;
+      box-shadow: 0 0 50px rgba(0,216,255,0.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--text);
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 0.8rem 2rem;
+      border-radius: 6px;
+      cursor: none;
+      letter-spacing: 0.05em;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      animation: fadeUp 1s 0.8s both;
+    }
+    .scroll-hint span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text3);
+      letter-spacing: 0.15em;
+    }
+    .scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollPulse 1.5s ease-in-out infinite;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 4rem;
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(2,4,9,0.85);
+      border-color: var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+    .nav-logo span { color: var(--text2); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text2);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ─── SECTIONS ─── */
+    section {
+      padding: 8rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      max-width: 60px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.4;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 3rem;
+    }
+
+    /* ─── ABOUT ─── */
+    #about { padding-top: 10rem; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--text2);
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin-bottom: 1.25rem;
+    }
+    .about-text strong { color: var(--text); }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: border-color 0.3s, transform 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at top left, var(--glow), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .stat-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .stat-card:hover::before { opacity: 1; }
+
+    .stat-number {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text2);
+      margin-top: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── EXPERIENCE ─── */
+    #experience { border-top: 1px solid var(--border); }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 2rem;
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: all 0.6s ease;
+    }
+    .timeline-item.visible { opacity: 1; transform: translateX(0); }
+
+    .timeline-dot {
+      position: absolute;
+      left: -2.4rem;
+      top: 0.4rem;
+      width: 10px; height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 15px var(--accent);
+    }
+
+    .timeline-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--accent3);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.35rem;
+    }
+
+    .timeline-role {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-company {
+      color: var(--text2);
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .timeline-desc {
+      color: var(--text2);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    /* ─── TECH STACK ─── */
+    #stack { border-top: 1px solid var(--border); }
+
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .stack-category {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem;
+      transition: border-color 0.3s, transform 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .stack-category::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent-color, var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .stack-category:hover { border-color: var(--accent-color, var(--accent)); transform: translateY(-3px); }
+    .stack-category:hover::after { transform: scaleX(1); }
+
+    .stack-cat-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent-color, var(--accent));
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .stack-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text2);
+      padding: 0.3rem 0.75rem;
+      border-radius: 100px;
+      transition: all 0.2s;
+    }
+    .pill:hover {
+      border-color: var(--accent-color, var(--accent));
+      color: var(--accent-color, var(--accent));
+      background: rgba(0,216,255,0.05);
+    }
+
+    /* ─── PROJECTS ─── */
+    #projects { border-top: 1px solid var(--border); }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.3s;
+    }
+    .project-card.visible { opacity: 1; transform: translateY(0); }
+    .project-card:hover { border-color: var(--card-accent, var(--accent)); transform: translateY(-5px); }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at top right, rgba(var(--card-rgb, 0,216,255), 0.08), transparent 60%);
+      pointer-events: none;
+    }
+
+    .project-icon {
+      width: 44px; height: 44px;
+      background: rgba(var(--card-rgb, 0,216,255), 0.1);
+      border: 1px solid rgba(var(--card-rgb, 0,216,255), 0.2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .project-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-desc {
+      color: var(--text2);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+
+    .project-features {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+    .project-features li {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text2);
+      padding: 0.25rem 0;
+      padding-left: 1.25rem;
+      position: relative;
+    }
+    .project-features li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--card-accent, var(--accent));
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .project-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--card-accent, var(--accent));
+      padding: 0.2rem 0.65rem;
+      border-radius: 4px;
+    }
+
+    /* ─── CONNECT ─── */
+    #connect {
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    #connect .section-label { justify-content: center; }
+    #connect .section-label::after { display: none; }
+
+    .connect-sub {
+      color: var(--text2);
+      font-size: 1.05rem;
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .connect-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .connect-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text2);
+      border: 1px solid var(--border);
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.3s;
+      letter-spacing: 0.05em;
+    }
+    .connect-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(0,216,255,0.05);
+      transform: translateY(-2px);
+    }
+
+    .fun-facts {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 5rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border);
+    }
+    .fun-fact {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text3);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .fun-fact-icon { font-size: 1rem; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    footer p {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text3);
+    }
+    footer span { color: var(--accent); }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
+      50% { opacity: 1; transform: scaleY(1); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    @keyframes terminalBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* ─── TERMINAL WIDGET ─── */
+    .terminal {
+      background: #0d1117;
+      border: 1px solid #21262d;
+      border-radius: 12px;
+      overflow: hidden;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      margin-top: 2rem;
+    }
+    .terminal-bar {
+      background: #161b22;
+      padding: 0.6rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid #21262d;
+    }
+    .terminal-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+    .terminal-body {
+      padding: 1.25rem;
+      line-height: 1.9;
+    }
+    .t-prompt { color: #3d444d; }
+    .t-cmd { color: var(--accent3); }
+    .t-out { color: var(--text2); }
+    .t-key { color: var(--accent); }
+    .t-val { color: #f97316; }
+    .t-cursor {
+      display: inline-block;
+      width: 8px; height: 14px;
+      background: var(--accent);
+      vertical-align: middle;
+      animation: terminalBlink 1s infinite;
+    }
+
+    /* ─── 3D FLOATING ELEMENTS ─── */
+    .floaters {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .floater {
+      position: absolute;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text3);
+      opacity: 0;
+      animation: floatIn 1s forwards;
+    }
+
+    @keyframes floatIn {
+      to { opacity: 0.6; }
+    }
+
+    /* responsive */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cursor -->
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- Navigation -->
+  <nav id="nav">
+    <div class="nav-logo">hs<span>.dev</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">about</a></li>
+      <li><a href="#experience">experience</a></li>
+      <li><a href="#stack">stack</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#connect">connect</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <div id="hero">
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Floating code labels -->
+    <div class="floaters" id="floaters"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge">available for senior roles</div>
+      <h1 class="hero-name">Harshit<br/>Singh</h1>
+      <p class="hero-title">
+        Lead DevOps Engineer &nbsp;·&nbsp;
+        <span>Golang Developer</span> &nbsp;·&nbsp;
+        Cloud & Kubernetes Specialist
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary">view work</a>
+        <a href="#connect" class="btn-secondary">get in touch</a>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <span>SCROLL</span>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+
+  <!-- About -->
+  <section id="about">
+    <div class="section-label">01 &nbsp; about me</div>
+    <h2 class="section-title">Engineering <em style="font-style:normal;color:var(--accent)">reliability</em><br/>at scale.</h2>
+
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm a <strong>Lead DevOps Engineer and Golang Developer</strong> with 4+ years of hands-on production experience designing cloud infrastructure that doesn't break at 3AM.
+        </p>
+        <p>
+          Currently leading platform engineering at <strong>IMA360 Software India Pvt. Ltd.</strong>, I architect secure, scalable, and fully automated systems on Kubernetes and cloud-native tooling.
+        </p>
+        <p>
+          My work sits at the intersection of <strong>automation, reliability, security, and cost optimization</strong> — turning complex infra problems into clean, repeatable solutions.
+        </p>
+
+        <!-- Terminal -->
+        <div class="terminal">
+          <div class="terminal-bar">
+            <div class="terminal-dot" style="background:#ff5f56"></div>
+            <div class="terminal-dot" style="background:#ffbd2e"></div>
+            <div class="terminal-dot" style="background:#27c93f"></div>
+          </div>
+          <div class="terminal-body">
+            <div><span class="t-prompt">~/harshit</span> <span class="t-cmd">$ whoami --json</span></div>
+            <div class="t-out">{</div>
+            <div class="t-out">&nbsp;&nbsp;<span class="t-key">"role"</span>: <span class="t-val">"Lead DevOps Engineer"</span>,</div>
+            <div class="t-out">&nbsp;&nbsp;<span class="t-key">"experience"</span>: <span class="t-val">"4+ years"</span>,</div>
+            <div class="t-out">&nbsp;&nbsp;<span class="t-key">"timezone"</span>: <span class="t-val">"US-friendly (night shift)"</span>,</div>
+            <div class="t-out">&nbsp;&nbsp;<span class="t-key">"status"</span>: <span class="t-val">"building at IMA360"</span></div>
+            <div class="t-out">}</div>
+            <div><span class="t-prompt">~/harshit</span> <span class="t-cmd">$</span> <span class="t-cursor"></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-number">4+</div>
+          <div class="stat-label">years in production</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">companies shipped</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">cloud providers</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">pipelines automated</div>
+        </div>
+        <div class="stat-card" style="grid-column: span 2;">
+          <div class="stat-number" style="font-size: 1.75rem; color: var(--accent3);">K8s · Terraform · Golang · AWS · Azure</div>
+          <div class="stat-label">core expertise</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <div class="section-label">02 &nbsp; experience</div>
+    <h2 class="section-title">Where I've<br/><span style="color:var(--accent2)">built things.</span></h2>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-meta">Aug 2024 — Present</div>
+        <div class="timeline-role">Lead DevOps Engineer</div>
+        <div class="timeline-company">IMA360 Software India Pvt. Ltd.</div>
+        <div class="timeline-desc">
+          Designing and leading secure, scalable, and automated cloud infrastructure. Spearheading Kubernetes platform strategy, CI/CD architecture, and cross-team DevOps standards. Driving FinOps practices and security hardening across all cloud workloads.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--accent2); box-shadow: 0 0 15px var(--accent2);"></div>
+        <div class="timeline-meta" style="color:var(--accent2)">Jun 2023 — Jul 2024</div>
+        <div class="timeline-role">Software Consultant</div>
+        <div class="timeline-company">Exikon Technology Pvt. Ltd.</div>
+        <div class="timeline-desc">
+          Consulted on cloud architecture and DevOps transformation. Delivered Golang tooling, Terraform modules, and infrastructure automation that reduced deployment time and improved system resilience.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--accent3); box-shadow: 0 0 15px var(--accent3);"></div>
+        <div class="timeline-meta" style="color:var(--accent3)">Oct 2021 — May 2023</div>
+        <div class="timeline-role">DevOps & Golang Developer Intern</div>
+        <div class="timeline-company">Exalture</div>
+        <div class="timeline-desc">
+          Built the foundation — containers, CI pipelines, Golang services, and Kubernetes deployments. Learned the craft from the ground up in a fast-paced engineering environment.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stack -->
+  <section id="stack">
+    <div class="section-label">03 &nbsp; tech stack</div>
+    <h2 class="section-title">Tools I <span style="color:var(--accent3)">trust.</span></h2>
+
+    <div class="stack-grid">
+      <div class="stack-category" style="--accent-color: #00d8ff">
+        <div class="stack-cat-label">Languages</div>
+        <div class="stack-pills">
+          <span class="pill">Golang</span>
+          <span class="pill">Bash</span>
+          <span class="pill">HCL</span>
+          <span class="pill">YAML</span>
+        </div>
+      </div>
+
+      <div class="stack-category" style="--accent-color: #ff9900">
+        <div class="stack-cat-label">Cloud</div>
+        <div class="stack-pills">
+          <span class="pill">AWS</span>
+          <span class="pill">Azure</span>
+          <span class="pill">EKS</span>
+          <span class="pill">AKS</span>
+          <span class="pill">S3</span>
+          <span class="pill">IAM</span>
+        </div>
+      </div>
+
+      <div class="stack-category" style="--accent-color: #06ffa5">
+        <div class="stack-cat-label">DevOps & Orchestration</div>
+        <div class="stack-pills">
+          <span class="pill">Kubernetes</span>
+          <span class="pill">Docker</span>
+          <span class="pill">Helm</span>
+          <span class="pill">Terraform</span>
+          <span class="pill">GitHub Actions</span>
+          <span class="pill">GitLab CI</span>
+          <span class="pill">ArgoCD</span>
+        </div>
+      </div>
+
+      <div class="stack-category" style="--accent-color: #e85d04">
+        <div class="stack-cat-label">Observability</div>
+        <div class="stack-pills">
+          <span class="pill">Prometheus</span>
+          <span class="pill">Grafana</span>
+          <span class="pill">AlertManager</span>
+          <span class="pill">Loki</span>
+        </div>
+      </div>
+
+      <div class="stack-category" style="--accent-color: #7c3aed">
+        <div class="stack-cat-label">Security</div>
+        <div class="stack-pills">
+          <span class="pill">RBAC</span>
+          <span class="pill">Secrets Management</span>
+          <span class="pill">OIDC</span>
+          <span class="pill">Network Policies</span>
+          <span class="pill">Trivy</span>
+        </div>
+      </div>
+
+      <div class="stack-category" style="--accent-color: #336791">
+        <div class="stack-cat-label">Data</div>
+        <div class="stack-pills">
+          <span class="pill">PostgreSQL</span>
+          <span class="pill">Redis</span>
+          <span class="pill">etcd</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <div class="section-label">04 &nbsp; featured projects</div>
+    <h2 class="section-title">Real-world<br/><span style="color:var(--accent4)">engineering.</span></h2>
+
+    <div class="projects-grid">
+
+      <div class="project-card" style="--card-accent:#00d8ff; --card-rgb: 0,216,255">
+        <div class="project-icon">⚡</div>
+        <div class="project-title">DevOps Platform Automation Toolkit</div>
+        <div class="project-desc">
+          A production-ready toolkit that automates the full platform lifecycle — from cluster bootstrap to security hardening.
+        </div>
+        <ul class="project-features">
+          <li>Kubernetes cluster bootstrap automation</li>
+          <li>CI/CD pipeline creation at scale</li>
+          <li>Infrastructure validation & drift detection</li>
+          <li>Security hardening out of the box</li>
+        </ul>
+        <div class="project-tags">
+          <span class="project-tag">Golang</span>
+          <span class="project-tag">Kubernetes</span>
+          <span class="project-tag">Terraform</span>
+          <span class="project-tag">GitHub Actions</span>
+        </div>
+      </div>
+
+      <div class="project-card" style="--card-accent:#06ffa5; --card-rgb: 6,255,165">
+        <div class="project-icon">📊</div>
+        <div class="project-title">Kubernetes Cost Optimizer</div>
+        <div class="project-desc">
+          A FinOps engine that brings full cost visibility into Kubernetes clusters — and acts on it automatically.
+        </div>
+        <ul class="project-features">
+          <li>Unused resource detection & cleanup</li>
+          <li>Right-sizing recommendations via metrics</li>
+          <li>Monthly infra cost forecasting</li>
+          <li>Grafana dashboard integration</li>
+        </ul>
+        <div class="project-tags">
+          <span class="project-tag">Golang</span>
+          <span class="project-tag">Prometheus</span>
+          <span class="project-tag">Grafana</span>
+          <span class="project-tag">FinOps</span>
+        </div>
+      </div>
+
+      <div class="project-card" style="--card-accent:#7c3aed; --card-rgb: 124,58,237">
+        <div class="project-icon">🔒</div>
+        <div class="project-title">Secure CI/CD Pipeline Framework</div>
+        <div class="project-desc">
+          A reusable, security-first pipeline framework designed for multi-environment, multi-team deployments.
+        </div>
+        <ul class="project-features">
+          <li>Zero-trust secret handling with Vault</li>
+          <li>IAM-based role scoped deployments</li>
+          <li>Blue/green + canary rollout strategies</li>
+          <li>SAST & container image scanning built-in</li>
+        </ul>
+        <div class="project-tags">
+          <span class="project-tag">GitHub Actions</span>
+          <span class="project-tag">Terraform</span>
+          <span class="project-tag">Docker</span>
+          <span class="project-tag">DevSecOps</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Connect -->
+  <section id="connect">
+    <div class="section-label">05 &nbsp; let's connect</div>
+    <h2 class="section-title">Build something<br/><span style="color:var(--accent)">great together.</span></h2>
+    <p class="connect-sub">
+      Open to senior DevOps, Platform Engineering, and SRE roles. US timezone friendly.
+    </p>
+    <div class="connect-links">
+      <a href="https://linkedin.com/in/HarshitPratapSingh" class="connect-btn" target="_blank">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/HarshitPratapSingh" class="connect-btn" target="_blank">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        GitHub
+      </a>
+      <a href="https://twitter.com/HarshitpratapU" class="connect-btn" target="_blank">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        Twitter
+      </a>
+      <a href="https://instagram.com/exploring_warmachine" class="connect-btn" target="_blank">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        Instagram
+      </a>
+    </div>
+
+    <div class="fun-facts">
+      <div class="fun-fact"><span class="fun-fact-icon">🌙</span> Night shift engineer — US timezone</div>
+      <div class="fun-fact"><span class="fun-fact-icon">🏗</span> Loves building scalable infra</div>
+      <div class="fun-fact"><span class="fun-fact-icon">📚</span> Tech & strategy reader</div>
+      <div class="fun-fact"><span class="fun-fact-icon">🏋</span> Fitness & discipline</div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Built by <span>Harshit Singh</span> — DevOps by day, code by night.</p>
+    <p>© 2026 · <span>HarshitPratapSingh</span></p>
+  </footer>
+
+  <script>
+  // ─── Custom Cursor ───
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx - 6 + 'px';
+    cursor.style.top = my - 6 + 'px';
+  });
+
+  (function animRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx - 18 + 'px';
+    ring.style.top = ry - 18 + 'px';
+    requestAnimationFrame(animRing);
+  })();
+
+  document.querySelectorAll('a, button, .stat-card, .project-card, .stack-category').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform = 'scale(2.5)';
+      ring.style.transform = 'scale(1.5)';
+      ring.style.borderColor = 'rgba(0,216,255,0.6)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.transform = 'scale(1)';
+      ring.style.transform = 'scale(1)';
+      ring.style.borderColor = 'rgba(0,216,255,0.4)';
+    });
+  });
+
+  // ─── Nav scroll ───
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // ─── 3D Particle Canvas ───
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [], mouse = { x: -1000, y: -1000 };
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  document.addEventListener('mousemove', e => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+
+  // Grid nodes
+  class Node {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * W;
+      this.y = Math.random() * H;
+      this.z = Math.random() * 800 + 200;
+      this.vx = (Math.random() - 0.5) * 0.3;
+      this.vy = (Math.random() - 0.5) * 0.3;
+      this.r = Math.random() * 1.5 + 0.5;
+      const colors = ['#00d8ff', '#7c3aed', '#06ffa5', '#ff6b35'];
+      this.color = colors[Math.floor(Math.random() * colors.length)];
+      this.alpha = Math.random() * 0.6 + 0.2;
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      // Mouse repel
+      const dx = this.x - mouse.x;
+      const dy = this.y - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 120) {
+        this.x += dx / dist * 1.5;
+        this.y += dy / dist * 1.5;
+      }
+      if (this.x < 0) this.x = W;
+      if (this.x > W) this.x = 0;
+      if (this.y < 0) this.y = H;
+      if (this.y > H) this.y = 0;
+    }
+    draw() {
+      const scale = 800 / this.z;
+      const sx = this.x * scale + (W / 2) * (1 - scale);
+      const sy = this.y * scale + (H / 2) * (1 - scale);
+      const sr = this.r * scale;
+      ctx.beginPath();
+      ctx.arc(sx, sy, Math.max(sr, 0.5), 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.globalAlpha = this.alpha * (1 - this.z / 1200);
+      ctx.fill();
+    }
+  }
+
+  for (let i = 0; i < 180; i++) particles.push(new Node());
+
+  function drawConnections() {
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const a = particles[i], b = particles[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 130) {
+          const alpha = (1 - dist / 130) * 0.12;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = `rgba(0,216,255,${alpha})`;
+          ctx.globalAlpha = 1;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  // Floating hexagon grid lines
+  function drawGrid() {
+    ctx.globalAlpha = 0.03;
+    ctx.strokeStyle = '#00d8ff';
+    ctx.lineWidth = 0.5;
+    const size = 80;
+    for (let y = -size; y < H + size; y += size * 0.866) {
+      const offset = ((y / (size * 0.866)) % 2 === 0) ? 0 : size / 2;
+      for (let x = -size + offset; x < W + size; x += size) {
+        ctx.beginPath();
+        for (let i = 0; i < 6; i++) {
+          const angle = (Math.PI / 3) * i - Math.PI / 6;
+          const px = x + Math.cos(angle) * size * 0.48;
+          const py = y + Math.sin(angle) * size * 0.48;
+          i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+        }
+        ctx.closePath();
+        ctx.stroke();
+      }
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  // Animated gradient orbs
+  let t = 0;
+  function drawOrbs() {
+    const orbs = [
+      { x: W * 0.15, y: H * 0.3, r: 300, color: 'rgba(124,58,237,0.06)' },
+      { x: W * 0.8, y: H * 0.6, r: 350, color: 'rgba(0,216,255,0.05)' },
+      { x: W * 0.5, y: H * 0.1, r: 200, color: 'rgba(6,255,165,0.04)' },
+    ];
+    orbs.forEach(o => {
+      const dx = Math.sin(t * 0.3) * 40;
+      const dy = Math.cos(t * 0.2) * 30;
+      const grad = ctx.createRadialGradient(o.x + dx, o.y + dy, 0, o.x + dx, o.y + dy, o.r);
+      grad.addColorStop(0, o.color);
+      grad.addColorStop(1, 'transparent');
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, W, H);
+    });
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, W, H);
+    t += 0.008;
+
+    drawGrid();
+    drawOrbs();
+    particles.forEach(p => { p.update(); p.draw(); });
+    drawConnections();
+
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  // ─── Floating code labels ───
+  const labels = [
+    'kubectl apply -f .', 'terraform plan', 'go build ./...', 'helm upgrade',
+    'docker buildx', 'git push origin', 'prometheus scrape', 'argo sync',
+    'aws eks update', 'k8s autoscale'
+  ];
+  const floatersEl = document.getElementById('floaters');
+  labels.forEach((label, i) => {
+    const el = document.createElement('div');
+    el.className = 'floater';
+    el.textContent = label;
+    el.style.cssText = `
+      left: ${10 + Math.random() * 80}%;
+      top: ${10 + Math.random() * 80}%;
+      animation-delay: ${i * 0.3}s;
+      animation-duration: ${3 + Math.random() * 3}s;
+      transform: rotate(${(Math.random() - 0.5) * 20}deg);
+    `;
+    floatersEl.appendChild(el);
+  });
+
+  // ─── Intersection Observer (scroll animations) ───
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.timeline-item, .project-card').forEach(el => observer.observe(el));
+
+  // ─── Typing effect for hero title ───
+  // (already set in HTML — subtle enhancement)
+
+  // ─── Counter animation for stats ───
+  const statNumbers = document.querySelectorAll('.stat-number');
+  const statObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const text = el.textContent;
+        const num = parseFloat(text);
+        if (!isNaN(num) && text !== '∞') {
+          let start = 0;
+          const duration = 1200;
+          const step = (timestamp) => {
+            if (!start) start = timestamp;
+            const progress = Math.min((timestamp - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = (num % 1 === 0)
+              ? Math.round(eased * num) + (text.includes('+') ? '+' : '')
+              : (eased * num).toFixed(1) + (text.includes('+') ? '+' : '');
+            if (progress < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+          statObserver.unobserve(el);
+        }
+      }
+    });
+  }, { threshold: 0.5 });
+  statNumbers.forEach(el => statObserver.observe(el));
+  </script>
+</body>
+</html>
